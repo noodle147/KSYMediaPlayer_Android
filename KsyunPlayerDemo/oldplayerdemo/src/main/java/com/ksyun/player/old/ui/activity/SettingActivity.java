@@ -3,7 +3,7 @@ package com.ksyun.player.old.ui.activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -14,13 +14,14 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.ksyun.player.old.*;
 import com.ksyun.player.old.util.Settings;
 
 public class SettingActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
 
     public static final int PLAY_VIDEO = 0x1002;
-
 
     private SharedPreferences settings ;
     private SharedPreferences.Editor editor;

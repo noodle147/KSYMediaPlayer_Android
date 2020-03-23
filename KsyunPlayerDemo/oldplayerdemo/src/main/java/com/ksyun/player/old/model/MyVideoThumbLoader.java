@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.os.AsyncTask;
-import android.support.v4.util.LruCache;
+
 import android.widget.ImageView;
+
+import androidx.collection.LruCache;
 
 import com.ksyun.media.player.misc.KSYProbeMediaInfo;
 

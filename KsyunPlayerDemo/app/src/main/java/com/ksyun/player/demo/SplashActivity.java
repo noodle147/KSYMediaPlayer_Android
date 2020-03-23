@@ -5,14 +5,17 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.github.mzule.activityrouter.annotation.Module;
 import com.github.mzule.activityrouter.annotation.Modules;
+import com.ksyun.player.now.activity.LiveMainActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -55,7 +58,7 @@ public class SplashActivity extends AppCompatActivity {
         timer.schedule(timerTask,3000);
     }
     private void jumpToNext(){
-        Intent intent=new Intent(SplashActivity.this, ChooseActivity.class);
+        Intent intent=new Intent(SplashActivity.this, LiveMainActivity.class);
         startActivity(intent);
         timer.cancel();
         finish();

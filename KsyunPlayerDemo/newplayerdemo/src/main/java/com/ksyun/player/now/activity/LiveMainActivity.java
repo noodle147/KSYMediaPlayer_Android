@@ -7,16 +7,19 @@ import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSON;
 import com.github.mzule.activityrouter.annotation.Module;
@@ -53,6 +56,10 @@ public class LiveMainActivity extends AppCompatActivity implements Handler.Callb
     private RecyclerView recyclerView;
     private GridLayoutManager layoutManager;
     private LiveMainAdapter liveMainAdapter;
+
+    private EditText etLiveName;
+    private TextView tvOpen;
+    private boolean isOpened;
 
 
     private FloatWindowView mFloatingView;
@@ -106,6 +113,15 @@ public class LiveMainActivity extends AppCompatActivity implements Handler.Callb
             }
         });
         recyclerView.setLayoutManager(layoutManager);
+        tvOpen = findViewById(R.id.tv_Open);
+        etLiveName = findViewById(R.id.et_Live_Name);
+
+        tvOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openLive(etLiveName.getText().toString());
+            }
+        });
     }
 
     private void initData() {
@@ -202,7 +218,7 @@ public class LiveMainActivity extends AppCompatActivity implements Handler.Callb
                 recyclerView.setAdapter(liveMainAdapter);
                 break;
             case NETWORK_ERROR:
-                Toast.makeText(LiveMainActivity.this,"网络连接失败",Toast.LENGTH_LONG).show();
+//                Toast.makeText(LiveMainActivity.this,"网络连接失败",Toast.LENGTH_LONG).show();
                 break;
 
         }
@@ -243,7 +259,8 @@ public class LiveMainActivity extends AppCompatActivity implements Handler.Callb
             intent.putExtra(Ids.PLAY_ID, -1);
             Ids.playingId = -1;
             intent.putExtra(Ids.VIDEO_LIST, (Serializable) videoList);
-            intent.putExtra(Ids.PLAY_URL, scanResult);
+            intent.putExtra(Ids.PLAY_URL, "rtmp://rtmplive.omwchat.com/dudu_test/lalala123456");
+//            intent.putExtra(Ids.PLAY_URL, scanResult);
             startActivity(intent);
         }
     }
@@ -264,5 +281,19 @@ public class LiveMainActivity extends AppCompatActivity implements Handler.Callb
                 e.printStackTrace();
             }
         }
+    }
+
+    private void openLive(String liveName) {
+        if(TextUtils.isEmpty(liveName)) {
+            Toast.makeText(this, "直播名不能为空", Toast.LENGTH_SHORT).show();
+        }
+        FloatingPlayer.getInstance().destroy();
+        Intent intent = new Intent(this, LiveDisplayActivity.class);
+        intent.putExtra(Ids.PLAY_ID, -1);
+        Ids.playingId = -1;
+        intent.putExtra(Ids.VIDEO_LIST, (Serializable) videoList);
+        intent.putExtra(Ids.PLAY_URL, "rtmp://rtmplive.omwchat.com/dudu_test/" + liveName);
+//            intent.putExtra(Ids.PLAY_URL, scanResult);
+        startActivity(intent);
     }
 }

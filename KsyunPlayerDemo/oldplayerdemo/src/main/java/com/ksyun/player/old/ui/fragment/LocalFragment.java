@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.Nullable;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.ksyun.player.old.R;
 import com.ksyun.player.old.ui.activity.player.FloatingVideoActivity;

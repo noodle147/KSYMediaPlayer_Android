@@ -8,7 +8,7 @@ import android.graphics.SurfaceTexture;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
+
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.Surface;
@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.ksyun.media.player.IMediaPlayer;
 import com.ksyun.media.player.KSYMediaMeta;
